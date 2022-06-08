@@ -11,4 +11,65 @@ const data = [
   { name: 'Grumpy Cat', image: 'https://cdn.cnn.com/cnnnext/dam/assets/190517103414-01-grumpy-cat-file-restricted.jpg' }
 ]
 
-// add your code here!
+//add your code here!
+// add picture when add random cat button is clicked
+const catButton = document.getElementById("add-random-cat-button"); 
+
+catButton.addEventListener("click", function() {
+  // accessing data index by using math floor, math random
+  const num = Math.floor(Math.random() * 9);
+  addCatPics(data[num].name, data[num].image);
+})
+
+// Button to remove all cats 
+const removeAllCats = document.getElementById("remove-all-cats");
+
+removeAllCats.addEventListener("click", function(){
+  const toDelete = document.querySelectorAll(".cat-image");
+  // const deletionArray = Array.from(toDelete);
+  toDelete.forEach(meow => {
+    meow.remove();
+  });
+})
+
+// add picture on form submit event
+const form = document.getElementById("new-kitty")
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const inputName = document.getElementById("kitty-name").value
+  const inputURL = document.getElementById("new-kitty-URL").value
+  addCatPics(inputName, inputURL);
+  form.reset();
+});
+
+// create function to add cat pictures
+function addCatPics(name, url){
+  // create a div to hold cat pics
+  const catDiv = document.createElement("div");
+  catDiv.className = "cat-image"
+
+  // create image and its attributes
+  const catImg = document.createElement("img");
+  catImg.src = url; 
+  catImg.alt = name;
+
+  // create the h2 element which will display cat's Name from data.name
+  const h2 = document.createElement("h2");
+  h2.textContent = name;
+
+  // create Remove button
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Remove"
+  deleteButton.addEventListener("click", function() {
+    catDiv.remove();
+  })
+
+  // appending elements into catDiv
+  catDiv.append(h2, catImg, deleteButton);
+
+  // appending catDiv into existing
+  const catContainer = document.getElementById("images-container");
+  catContainer.append(catDiv);
+}
+
+
