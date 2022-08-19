@@ -1,0 +1,17 @@
+#!/usr/share/rvm/rubies/ruby-2.7.4/bin/ruby
+
+require_relative "../config/environment"
+
+App.new
+
+# llama farm app
+
+# see llamas
+
+# add llamas
+
+# determine which llamas are in the playpen
+
+# which llamas are sponsored
+
+# which llamas are sleeping
